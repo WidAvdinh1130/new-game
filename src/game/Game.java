@@ -79,7 +79,7 @@ public class Game {
 				}
 				if(command.equals("open")) {
 					if(location.getName().equals("Attic")){
-						location.
+						//location. finish later
 					}
 				}
 				
