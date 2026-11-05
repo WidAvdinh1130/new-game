@@ -22,6 +22,15 @@ public class Item implements Serializable{
     	public boolean canCarry(){
     		return carry;
     	}
+    	public void open() {
+    		Game.print("If you open it, you break it");
+    	}
+    	public void close() {
+    		Game.print("You can't close that thing");
+    	}
+    	public void read() {
+    		Game.print("you read the item, but there is nothing to read because there is no words");
+    	}
     	public String toString() {
 		String s = "";
 		s += name;

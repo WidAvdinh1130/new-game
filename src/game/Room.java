@@ -9,7 +9,7 @@ import java.util.Iterator;
 public class Room implements Serializable{
 	private String name;
 	private Room[] roomstogo;
-	private HashMap<String,Item> inventory = new HashMap<>();
+	private HashMap<String,Item> roomInventory = new HashMap<>();
 	private Boolean isLocked;
 	
 	//constructor
@@ -21,11 +21,11 @@ public class Room implements Serializable{
 	}
 	
 	public Item getItem(String name) {
-		return inventory.get(name);
+		return roomInventory.get(name);
 	}
 
 	public void addItem(Item i) {
-		inventory.put(i.getName(), i);
+		roomInventory.put(i.getName(), i);
 	}
 	public Boolean getLocked() {
 		return isLocked;
@@ -36,7 +36,7 @@ public class Room implements Serializable{
 	}
 
 	public void removeItem(String name) {
-		inventory.remove(name);
+		roomInventory.remove(name);
 	}
 
 	public void addExit(Room r, int i) {
@@ -66,9 +66,9 @@ public class Room implements Serializable{
 	public String toString() {
 		String s = "";
 		s += name + "\n" + Game.house.get(name);
-		if(inventory.size() != 0) {
+		if(roomInventory.size() != 0) {
 			s += "\n" + "there is a:";
-			Iterator<Item> it = inventory.values().iterator();
+			Iterator<Item> it = roomInventory.values().iterator();
 			while(it.hasNext()) {
 				Item a = it.next();
 				s += "\n" + a;

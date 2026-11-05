@@ -7,13 +7,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class Game {
 	private static Room location = World.buildWorld();
 	private static ArrayList<Item> inventory = new ArrayList<Item>();
+	public static ArrayList<Item> itemInventory = new ArrayList<Item>();
 	public static HashMap<String,String> house = new HashMap<>();
 	private static HashMap<String,Integer> dirTracker = new HashMap<>();
 
@@ -66,12 +66,21 @@ public class Game {
 					String itemName = "";
 					for(int i = 1; i < multcommand.length; i++) {
 						if(i < multcommand.length - 1)
-							itemName += multcommand[i] + "_";
+							itemName += multcommand[i] + " ";
 						else {
 							itemName += multcommand[i];
 						}
 					}
-					//inventory(itemName).use();
+					for(Item thing:inventory) {
+						if(thing.getName().equals(itemName)) {
+							thing.use();
+						}
+					}
+				}
+				if(command.equals("open")) {
+					if(location.getName().equals("Attic")){
+						location.
+					}
 				}
 				
 				else if (command.equals("load")) {
@@ -197,6 +206,9 @@ public class Game {
 
 	public static ArrayList<Item> getInventory() {
 		return inventory;
+	}
+	public static void addItem(Item i) {
+		inventory.add(i);
 	}
 
 	public static void main(String[] args) {

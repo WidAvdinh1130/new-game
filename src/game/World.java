@@ -8,7 +8,7 @@ public class World {
 		Room livingRoom = new Room("Living Room", false);
 		Room office = new Room("Office", true);
 		Room kitchen = new Room("Kitchen", false);
-		Room bedroom = new Room("Bedroom", false);
+		Room bedroom = new Room("Bedroom", true);
 		Room attic = new Room("Attic", true);
 		Room garage = new Room("Garage", true);
 		
@@ -21,6 +21,7 @@ public class World {
 		Item safe = new Item("safe", false);
 		Item couch = new Item("couch", false);
 		Item coffee_table = new Item("coffee_table", false);
+		Item Safe = new Safe("safe", true);
 
 		livingRoom.addItem(music_box);
 		kitchen.addItem(flashlight);
@@ -31,6 +32,7 @@ public class World {
 		attic.addItem(safe);
 		livingRoom.addItem(couch);
 		livingRoom.addItem(coffee_table);
+		attic.addItem(safe);
 		
 		livingRoom.addExit(kitchen, 0);
 		kitchen.addExit(livingRoom, 1);

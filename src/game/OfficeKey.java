@@ -11,7 +11,7 @@ public class OfficeKey extends Item {
 			if (usedTool) {
 				Game.print("Office is already opened");
 			} else {
-				Game.getLocation().getExit(4).setLocked(false);
+				Game.getLocation().getExit(1).setLocked(false);
 				usedTool = true;
 				Game.print("You used the tool. The trapdoor turned into stairs to climb up to.");
 			}
