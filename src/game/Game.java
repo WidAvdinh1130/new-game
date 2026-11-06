@@ -32,7 +32,7 @@ public class Game {
 				if(multcommand.length == 2 && dirTracker.containsKey(multcommand[1])) {
 					move(multcommand[1]);
 				} else {
-						print("go where");
+						print("go where?");
 				}
 			}
 			
@@ -149,37 +149,14 @@ public class Game {
 	}
 
 	private static void move(String dir) {
-		int dirNum = 0;
-		for (int i = 0; i < dirTracker.size(); i++) {
-			dirNum = i;
-		}
-		if(location.getExit(dirNum)==null) {
-			print("you can't go there");
-		}
-
-		else if(!dirTracker.containsKey(dir)) {
+		if(location.getExit(dirTracker.get(dir))==null) {
 			print("you can't go there");
 		}
 		else if(location.getExit(dirTracker.get(dir)).getLocked() == true) {
 			print("it is locked, find something to unlock it");
 		}
-		else if(dir.equals("east") && location.getExit(0)!=null) {
-			location = location.getExit(0);
-		}
-		else if(dir.equals("west") && location.getExit(1)!=null) {
-			location = location.getExit(1);
-		}
-		else if(dir.equals("north") && location.getExit(2)!=null) {
-			location = location.getExit(2);
-		}
-		else if(dir.equals("south") && location.getExit(3)!=null) {
-			location = location.getExit(3);
-		}
-		else if(dir.equals("up") && location.getExit(4)!=null) {
-			location = location.getExit(4);
-		}
-		else if(dir.equals("down") && location.getExit(5)!=null) {
-			location = location.getExit(5);
+		else {
+			location = location.getExit(dirTracker.get(dir));
 		}
 	}
 
