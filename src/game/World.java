@@ -13,7 +13,7 @@ public class World {
 		Room garage = new Room("Garage", true);
 		
 		Item music_box = new Item("music box", true);
-		Item flashlight = new Item("flashlight", true);
+		Item flashlight = new Flashlight("flashlight", true);
 		Item knife = new Item("knife", true);
 		Item mysterious_orb = new Item("mysterious orb", true);
 		Item tools = new Tools("tools", true);

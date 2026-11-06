@@ -1,6 +1,5 @@
 package game;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -14,92 +13,102 @@ public class Game {
 	private static Room location = World.buildWorld();
 	private static ArrayList<Item> inventory = new ArrayList<Item>();
 	public static ArrayList<Item> itemInventory = new ArrayList<Item>();
-	public static HashMap<String,String> house = new HashMap<>();
-	private static HashMap<String,Integer> dirTracker = new HashMap<>();
+	public static HashMap<String, String> house = new HashMap<>();
+	private static HashMap<String, Integer> dirTracker = new HashMap<>();
 
+	// run game
 	public static void runGame() {
 		PrintFileDemo();
 		print(location);
 		Scanner input = new Scanner(System.in);
 		String command = "";
-		while(!command.equals("exit")) {
-			
+		while (!command.equals("exit")) {
 			System.out.println("Enter command");
 			command = input.nextLine();
-			String multcommand[]= command.split(" ");
-			//ill  do at home
-			if(!command.equals("exit")) {
-				String[] dirs = {"east", "west", "north", "south", "up", "down"};
-				if(command.split(" ")[0].equals("go")) {
-					for(String cardin:dirs) {
-						if(multcommand[1].equals(cardin)) {
-							move(command.split(" ")[1]);
-						}
+			String multcommand[] = command.split(" ");
+			String[] dirs = { "east", "west", "north", "south", "up", "down" };
+			if (multcommand[0].equals("go")) {
+				for (String cardin : dirs) {
+					if (multcommand[1].equals(cardin)) {
+						move(multcommand[1]);
+					}
+					else{
+						print("go where?");
 					}
 				}
-				if(command.equals("i")) {
-					print("your are carrying:");
-					if(inventory.size() != 0)
-					for(Item item:inventory) {
+			}
+			else if (command.equals("i")) {
+				print("your are carrying:");
+				if (inventory.size() != 0)
+					for (Item item : inventory) {
 						print(item);
 					}
-					else {
-						print("nothing");
-					}
+				else {
+					print("nothing");
 				}
-				else if(command.equals("take")) {
-					print("take what");
-				}
-				else if(multcommand[0].equals("take") && multcommand.length >= 2) {
-					String itemName = "";
-					for(int i = 1; i < multcommand.length; i++) {
-						if(i < multcommand.length - 1)
-							itemName += multcommand[i] + " ";
-						else {
-							itemName += multcommand[i];
-						}
-					}
-					takeItem(itemName);
-				}
-				
-				else if(multcommand[0].equals("use") && multcommand.length >= 2) {
-					String itemName = "";
-					for(int i = 1; i < multcommand.length; i++) {
-						if(i < multcommand.length - 1)
-							itemName += multcommand[i] + " ";
-						else {
-							itemName += multcommand[i];
-						}
-					}
-					for(Item thing:inventory) {
-						if(thing.getName().equals(itemName)) {
-							thing.use();
-						}
-					}
-				}
-				if(command.equals("open")) {
-					if(location.getName().equals("Attic")){
-						//location. finish later
-					}
-				}
-				
-				else if (command.equals("load")) {
-					print("file loaded");
-					loadGame();
-				}
-				else if (command.equals("save")) {
-					print("file saved");
-					saveGame();
-				}
-				
-				print(location);
-				
 			}
-			//System.out.println(command);
+			
+			else if (command.equals("take")) {
+				print("take what");
+			}
+			else if (multcommand[0].equals("take")) {
+				if (multcommand.length >= 2){
+					String itemName = "";
+					for (int i = 1; i < multcommand.length; i++) {
+						if (i < multcommand.length - 1)
+							itemName += multcommand[i] + " ";
+						else {
+							itemName += multcommand[i];
+					}
+				}
+				takeItem(itemName);
+			}
+
+			else if (multcommand[0].equals("use")) {
+				if(multcommand.length >= 2) {
+					String itemName = "";
+					for (int i = 1; i < multcommand.length; i++) {
+						if (i < multcommand.length - 1) {
+							itemName += multcommand[i] + " ";
+						}
+						else {
+							itemName += multcommand[i];
+						}
+					}
+					for (Item thing : inventory) {
+						print(thing);
+						print(itemName);
+					if (thing.getName().equals(itemName)) {
+						thing.use();
+					}
+					}
+				}
+				else {
+					print("use what");
+				}
+			}
+			if (command.equals("open")) {
+				if (location.getName().equals("Attic")) {
+					// location. finish later
+				}
+			}
+
+			else if (command.equals("load")) {
+				print("file loaded");
+				loadGame();
+			} else if (command.equals("save")) {
+				print("file saved");
+				saveGame();
+			}
+
+			print(location);
+
+			// System.out.println(command);
 		}
 		input.close();
 		print("goodbye");
 	}
+
 	private static void saveGame() {
 		try {
 			File saveFile = new File("saveData0.sav");
@@ -113,6 +122,7 @@ public class Game {
 			e.printStackTrace();
 		}
 	}
+
 	private static void loadGame() {
 		try {
 			File saveFile = new File("saveData0.sav");
@@ -125,11 +135,22 @@ public class Game {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private static void move(String dir) {
-		if(location.getExit(dirTracker.get(dir)).getLocked() == true) {
+		int dirNum = 0
+		for (int i = 0; i < dirTracker.size(); i++) {
+			dirNum = i;
+		}
+		if(location.getExit(dirNum)==null) {
+			print("you can't go there");
+		}
+		
+		else if(!dirTracker.containsKey(dir)) {
+			print("you can't go there");
+		}
+		else if(location.getExit(dirTracker.get(dir)).getLocked() == true) {
 			print("it is locked, find something to unlock it");
 		}
 		else if(dir.equals("east") && location.getExit(0)!=null) {
@@ -150,56 +171,51 @@ public class Game {
 		else if(dir.equals("down") && location.getExit(5)!=null) {
 			location = location.getExit(5);
 		}
-		else{
-			print("you can't go there");
-		}
 	}
+
 	public static void takeItem(String itemName) {
-		if(location.getItem(itemName) != null) {
-			if(itemName.equals(location.getItem(itemName).toString())){
-				if(location.getItem(itemName).canCarry() == true) {
+		if (location.getItem(itemName) != null) {
+			if (itemName.equals(location.getItem(itemName).toString())) {
+				if (location.getItem(itemName).canCarry() == true) {
 					inventory.add(location.getItem(itemName));
 					print("you take the " + location.getItem(itemName).getName() + " with you");
-					location.removeItem(itemName);	
-				}
-				else {
+					location.removeItem(itemName);
+				} else {
 					print("you can't carry " + location.getItem(itemName).getName());
 				}
-			}
-			else {
+			} else {
 				print("you look for the " + itemName + " but didn't find it");
 			}
-			}
-		else{
+		} else {
 			print("there is nothing to take");
 		}
 	}
+
 	public static void PrintFileDemo() {
 		try {
 			Scanner fileScan = new Scanner(new File("description.txt"));
-			while(fileScan.hasNextLine()) {
+			while (fileScan.hasNextLine()) {
 				String Line = fileScan.nextLine();
 				String theRoom = Line;
 				String theDesc = "";
 				Line = fileScan.nextLine();
-				while(!Line.equals("#")) {
+				while (!Line.equals("#")) {
 					theDesc += Line + " ";
 					Line = fileScan.nextLine();
 				}
-				
-			house.put(theRoom, theDesc);
+
+				house.put(theRoom, theDesc);
 			}
-			fileScan.close();				
-			}
-		catch(Exception ex) {
+			fileScan.close();
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
 	public static void print(Object obj) {
 		System.out.println(obj);
-		}
-	
+	}
+
 	public static Room getLocation() {
 		return location;
 	}
@@ -207,17 +223,18 @@ public class Game {
 	public static ArrayList<Item> getInventory() {
 		return inventory;
 	}
+
 	public static void addItem(Item i) {
 		inventory.add(i);
 	}
 
 	public static void main(String[] args) {
-		dirTracker.put("east",0);
-		dirTracker.put("west",1);
-		dirTracker.put("north",2);
-		dirTracker.put("south",3);
-		dirTracker.put("up",4);
-		dirTracker.put("down",5);
+		dirTracker.put("east", 0);
+		dirTracker.put("west", 1);
+		dirTracker.put("north", 2);
+		dirTracker.put("south", 3);
+		dirTracker.put("up", 4);
+		dirTracker.put("down", 5);
 		runGame();
 	}
 }
