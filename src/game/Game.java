@@ -9,13 +9,13 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+//game class
 public class Game {
 	private static Room location = World.buildWorld();
 	private static ArrayList<Item> inventory = new ArrayList<Item>();
 	public static ArrayList<Item> itemInventory = new ArrayList<Item>();
 	public static HashMap<String, String> house = new HashMap<>();
 	private static HashMap<String, Integer> dirTracker = new HashMap<>();
-
 	// run game
 	public static void runGame() {
 		PrintFileDemo();
@@ -26,85 +26,95 @@ public class Game {
 			System.out.println("Enter command");
 			command = input.nextLine();
 			String multcommand[] = command.split(" ");
-			String[] dirs = { "east", "west", "north", "south", "up", "down" };
+
+			//move command
 			if (multcommand[0].equals("go")) {
-				for (String cardin : dirs) {
-					if (multcommand[1].equals(cardin)) {
-						move(multcommand[1]);
-					}
-					else{
-						print("go where?");
-					}
+				if(multcommand.length == 2 && dirTracker.containsKey(multcommand[1])) {
+					move(multcommand[1]);
+				} else {
+						print("go where");
 				}
 			}
+			
+			//show inventory
 			else if (command.equals("i")) {
 				print("your are carrying:");
-				if (inventory.size() != 0)
+				if (inventory.size() != 0) {
 					for (Item item : inventory) {
 						print(item);
 					}
-				else {
+				} else {
 					print("nothing");
 				}
 			}
 			
-			else if (command.equals("take")) {
-				print("take what");
-			}
+			//take item command
 			else if (multcommand[0].equals("take")) {
-				if (multcommand.length >= 2){
+				if (multcommand.length >= 2) {
 					String itemName = "";
 					for (int i = 1; i < multcommand.length; i++) {
 						if (i < multcommand.length - 1)
 							itemName += multcommand[i] + " ";
 						else {
 							itemName += multcommand[i];
+						}
 					}
+					takeItem(itemName);
 				}
-				takeItem(itemName);
+				else{
+					print("take what");
+				}
 			}
-
+			
+			//use item
 			else if (multcommand[0].equals("use")) {
-				if(multcommand.length >= 2) {
+				if (multcommand.length >= 2) {
 					String itemName = "";
 					for (int i = 1; i < multcommand.length; i++) {
 						if (i < multcommand.length - 1) {
 							itemName += multcommand[i] + " ";
-						}
-						else {
+						} else {
 							itemName += multcommand[i];
 						}
 					}
 					for (Item thing : inventory) {
-						print(thing);
+						print(thing.getName());
 						print(itemName);
-					if (thing.getName().equals(itemName)) {
-						thing.use();
-					}
+						if (thing.getName().equals(itemName)) {
+							//temporary pass
+							print("pass");
+							//thing.use();
+						}
 					}
 				}
 				else {
 					print("use what");
+					}
 				}
-			}
-			if (command.equals("open")) {
+			
+			//open attic safe
+			else if (command.equals("open")) {
 				if (location.getName().equals("Attic")) {
 					// location. finish later
 				}
+				else {
+					print("you can't open that");
+				}
 			}
-
+			
+			//load game
 			else if (command.equals("load")) {
 				print("file loaded");
 				loadGame();
-			} else if (command.equals("save")) {
+			}
+			
+			//save game
+			else if (command.equals("save")) {
 				print("file saved");
 				saveGame();
 			}
-
 			print(location);
-
-			// System.out.println(command);
-		}
+			}
 		input.close();
 		print("goodbye");
 	}
@@ -139,14 +149,14 @@ public class Game {
 	}
 
 	private static void move(String dir) {
-		int dirNum = 0
+		int dirNum = 0;
 		for (int i = 0; i < dirTracker.size(); i++) {
 			dirNum = i;
 		}
 		if(location.getExit(dirNum)==null) {
 			print("you can't go there");
 		}
-		
+
 		else if(!dirTracker.containsKey(dir)) {
 			print("you can't go there");
 		}
