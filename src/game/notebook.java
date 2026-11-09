@@ -17,6 +17,7 @@ public class notebook extends Item{
 			Game.print("you got a code already");
 		}
 	}
+	@Override
 	public void read() {
 		Game.print("you got a code");
 		Game.addItem(new Item("code", false));

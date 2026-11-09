@@ -35,7 +35,7 @@ public class Safe extends Item {
 			Game.print("you cannot open the safe");
 		}
 	}
-
+	@Override
 	public void close() {
 		if(openState == true) {
 			openState = false;

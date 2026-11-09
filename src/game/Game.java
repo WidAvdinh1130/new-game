@@ -146,10 +146,10 @@ public class Game {
 
 	private static void move(String dir) {
 		if(location.getExit(dirTracker.get(dir))==null) {
-			print("you can't go there");
+			print("you can't go there\n");
 		}
 		else if(location.getExit(dirTracker.get(dir)).getLocked() == true) {
-			print("it is locked, find something to unlock it");
+			print("it is locked, find something to unlock it\n");
 		}
 		else {
 			location = location.getExit(dirTracker.get(dir));
