@@ -67,13 +67,13 @@ public class Room implements Serializable{
 		String s = "";
 		s += name + "\n" + Game.house.get(name);
 		if(roomInventory.size() != 0) {
-			s += "\n" + "there is a:";
+			s += "\n\n" + "there is a:";
 			Iterator<Item> it = roomInventory.values().iterator();
 			while(it.hasNext()) {
 				Item a = it.next();
 				s += "\n" + a;
 			}
-			s += "\nhere";
+			s += "\nhere\n";
 		}
 		return s;
 	}

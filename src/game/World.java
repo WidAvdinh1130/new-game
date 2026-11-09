@@ -12,16 +12,15 @@ public class World {
 		Room attic = new Room("Attic", true);
 		Room garage = new Room("Garage", true);
 		
-		Item music_box = new Item("music box", true);
-		Item flashlight = new Flashlight("flashlight", true);
-		Item knife = new Item("knife", true);
-		Item mysterious_orb = new Item("mysterious orb", true);
-		Item tools = new Tools("tools", true);
+		Item music_box = new Item("Music Box", true);
+		Item flashlight = new Flashlight("Flashlight", true);
+		Item knife = new Item("Knife", true);
+		Item mysterious_orb = new Item("Mysterious Orb", true);
+		Item tools = new Tools("Tools", true);
 		Item office_key = new OfficeKey("Office Key", true);
-		Item safe = new Item("safe", false);
-		Item couch = new Item("couch", false);
-		Item coffee_table = new Item("coffee_table", false);
-		Item Safe = new Safe("safe", true);
+		Item safe = new Item("Safe", false);
+		Item couch = new Item("Couch", false);
+		Item coffee_table = new Item("Coffee Table", false);
 
 		livingRoom.addItem(music_box);
 		kitchen.addItem(flashlight);

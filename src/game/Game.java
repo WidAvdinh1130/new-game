@@ -78,12 +78,8 @@ public class Game {
 						}
 					}
 					for (Item thing : inventory) {
-						print(thing.getName());
-						print(itemName);
 						if (thing.getName().equals(itemName)) {
-							//temporary pass
-							print("pass");
-							//thing.use();
+							thing.use();
 						}
 					}
 				}
@@ -165,7 +161,7 @@ public class Game {
 			if (itemName.equals(location.getItem(itemName).toString())) {
 				if (location.getItem(itemName).canCarry() == true) {
 					inventory.add(location.getItem(itemName));
-					print("you take the " + location.getItem(itemName).getName() + " with you");
+					print("you take the " + location.getItem(itemName).getName() + " with you" + "\n");
 					location.removeItem(itemName);
 				} else {
 					print("you can't carry " + location.getItem(itemName).getName());

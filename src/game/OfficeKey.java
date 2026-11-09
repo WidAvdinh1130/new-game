@@ -13,7 +13,7 @@ public class OfficeKey extends Item {
 			} else {
 				Game.getLocation().getExit(1).setLocked(false);
 				usedTool = true;
-				Game.print("You used the tool. The trapdoor turned into stairs to climb up to.");
+				Game.print("You used the Office Key in the Living Room, The Office is now unlocked");
 			}
 		} else
 			Game.print("You can't use it here");
