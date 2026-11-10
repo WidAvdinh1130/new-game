@@ -89,15 +89,35 @@ public class Game {
 				}
 			
 			//open attic safe
-			else if (command.equals("open")) {
-				if (location.getName().equals("Attic")) {
-					// location. finish later
+			else if (multcommand[0].equals("open")) {
+				if (multcommand.length >= 2 && multcommand[1].equals("Safe")) {
+					location.getItem("Safe").open();
 				}
 				else {
-					print("you can't open that");
+					print("you can't open anything here");
 				}
 			}
 			
+			else if (multcommand[0].equals("close")) {
+				if (multcommand.length >= 2 && multcommand[1].equals("Safe")) {
+					location.getItem("Safe").close();
+				}
+				else {
+					print("you can't close anything here");
+				}
+			}
+			else if (multcommand[0].equals("read")) {
+				if (multcommand.length >=2 && multcommand[1].equals("Notebook")){
+					for (Item thing : inventory) {
+						if (thing.getName().equals("Notebook")) {
+							thing.read();
+						}
+					}
+				}
+				else {
+					print("you can't read anything here");
+				}
+			}
 			//load game
 			else if (command.equals("load")) {
 				print("file loaded");

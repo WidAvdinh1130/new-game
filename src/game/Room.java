@@ -3,6 +3,7 @@ package game;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 
 // make room objects
@@ -75,6 +76,8 @@ public class Room implements Serializable{
 			}
 			s += "\nhere\n";
 		}
+		Set<String> keys = roomInventory.keySet();
+		Game.print(keys);
 		return s;
 	}
 	

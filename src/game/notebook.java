@@ -5,7 +5,6 @@ public class notebook extends Item{
 	public notebook(String n, Boolean c) {
 		super(n, c);
 		opened=false;
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public void open() {
@@ -20,7 +19,8 @@ public class notebook extends Item{
 	@Override
 	public void read() {
 		Game.print("you got a code");
-		Game.addItem(new Item("code", false));
+		Item code = new Item("code", true);
+		Game.addItem(code);
 		opened = true;
 	}
 }
