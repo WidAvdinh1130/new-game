@@ -232,6 +232,7 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
+		print("you stupid");
 		dirTracker.put("east", 0);
 		dirTracker.put("west", 1);
 		dirTracker.put("north", 2);
