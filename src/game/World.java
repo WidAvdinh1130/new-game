@@ -7,10 +7,10 @@ public class World {
 	public static Room buildWorld() {
 		//set office, attic, garage to locked
 		Room livingRoom = new Room("Living Room", false);
-		Room office = new Room("Office", false);
+		Room office = new Room("Office", true);
 		Room kitchen = new Room("Kitchen", false);
-		Room bedroom = new Room("Bedroom", false);
-		Room attic = new Room("Attic", false);
+		Room bedroom = new Room("Bedroom", true);
+		Room attic = new Room("Attic", true);
 		Room garage = new Room("Garage", true);
 		
 		Item music_box = new Item("Music Box", true);
