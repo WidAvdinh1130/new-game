@@ -1,0 +1,21 @@
+package game;
+
+public class OfficeKey extends Item {
+	boolean usedTool = false;
+	public OfficeKey(String n, Boolean c) {
+		super(n, c);
+	}
+	@Override
+	public void use() {
+		if (Game.getLocation().getName().equals("Living Room")) {
+			if (usedTool) {
+				Game.print("Office is already opened");
+			} else {
+				Game.getLocation().getExit(1).setLocked(false);
+				usedTool = true;
+				Game.print("You used the Office Key in the Living Room, The Office is now unlocked");
+			}
+		} else
+			Game.print("You can't use it here");
+	}
+}
