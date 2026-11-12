@@ -16,8 +16,8 @@ public class Safe extends Item {
 			Game.print("you opened the safe");
 			openState = true;
 			if(Game.getInventory().indexOf("Notebook") == -1) {
-				Item notebook = new notebook("Notebook", true);
-				Game.getLocation().addItem(notebook);
+				Item Notebook = new notebook("Notebook", true);
+				Game.getLocation().addItem(Notebook);
 				Game.print("inside the safe there is a notebook");
 			}
 			else {

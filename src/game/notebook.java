@@ -18,10 +18,9 @@ public class notebook extends Item{
 	}
 	@Override
 	public void read() {
-		Game.print("you got a code");
+		Game.print("you read the notebook and got a code");
 		Item code = new Item("Code", true);
-		Game.getLocation().addItem(code);
-		Game.takeItem("Code");
+		Game.inventory.add(code);
 		opened = true;
 	}
 }

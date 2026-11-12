@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.ObjectOutputStream; 
 
 //game class
 public class Game {
@@ -107,16 +107,21 @@ public class Game {
 			}
 			else if (multcommand[0].equals("read")) {
 				if (multcommand.length >=2 && multcommand[1].equals("Notebook")){
-					if(inventory.indexOf(location.getItem("Notebook")) == -1) {
-						inventory.get(inventory.indexOf(location.getItem("Notebook"))).read();
-						print("pass");
+					Item hasNotebook = null;
+					for (int i = 0; i < inventory.size(); i++) {
+						if (inventory.get(i).getName().equals("Notebook")) {
+							hasNotebook = inventory.get(i);
+						}
 					}
-					else {
+					if (hasNotebook != null) {
+						hasNotebook.read();
+					}
+					else{
 						print("fail");
 					}
 				}
 				else {
-					print("you can't read anything here");
+					print("nothing to read");
 				}
 			}
 			//load game
