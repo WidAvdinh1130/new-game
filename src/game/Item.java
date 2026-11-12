@@ -22,10 +22,10 @@ public class Item implements Serializable{
     	public boolean canCarry(){
     		return carry;
     	}
-    	public void open()	 {
+    	public void openSafe()	 {
     		Game.print("If you open it, you break it");
     	}
-    	public void close() {
+    	public void closeSafe() {
     		Game.print("You can't close anything");
     	}
     	public void read() {

@@ -76,8 +76,6 @@ public class Room implements Serializable{
 			}
 			s += "\nhere\n";
 		}
-		Set<String> keys = roomInventory.keySet();
-		Game.print(keys);
 		return s;
 	}
 	

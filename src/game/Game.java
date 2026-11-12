@@ -12,8 +12,7 @@ import java.io.ObjectOutputStream;
 //game class
 public class Game {
 	private static Room location = World.buildWorld();
-	private static ArrayList<Item> inventory = new ArrayList<Item>();
-	public static ArrayList<Item> itemInventory = new ArrayList<Item>();
+	public static ArrayList<Item> inventory = new ArrayList<Item>();
 	public static HashMap<String, String> house = new HashMap<>();
 	private static HashMap<String, Integer> dirTracker = new HashMap<>();
 	// run game
@@ -91,7 +90,7 @@ public class Game {
 			//open attic safe
 			else if (multcommand[0].equals("open")) {
 				if (multcommand.length >= 2 && multcommand[1].equals("Safe")) {
-					location.getItem("Safe").open();
+					location.getItem("Safe").openSafe();
 				}
 				else {
 					print("you can't open anything here");
@@ -100,7 +99,7 @@ public class Game {
 			
 			else if (multcommand[0].equals("close")) {
 				if (multcommand.length >= 2 && multcommand[1].equals("Safe")) {
-					location.getItem("Safe").close();
+					location.getItem("Safe").closeSafe();
 				}
 				else {
 					print("you can't close anything here");
@@ -108,10 +107,12 @@ public class Game {
 			}
 			else if (multcommand[0].equals("read")) {
 				if (multcommand.length >=2 && multcommand[1].equals("Notebook")){
-					for (Item thing : inventory) {
-						if (thing.getName().equals("Notebook")) {
-							thing.read();
-						}
+					if(inventory.indexOf(location.getItem("Notebook")) == -1) {
+						inventory.get(inventory.indexOf(location.getItem("Notebook"))).read();
+						print("pass");
+					}
+					else {
+						print("fail");
 					}
 				}
 				else {
@@ -232,7 +233,6 @@ public class Game {
 	}
 
 	public static void main(String[] args) {
-		print("you stupid");
 		dirTracker.put("east", 0);
 		dirTracker.put("west", 1);
 		dirTracker.put("north", 2);

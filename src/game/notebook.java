@@ -7,7 +7,7 @@ public class notebook extends Item{
 		opened=false;
 	}
 	@Override
-	public void open() {
+	public void openSafe() {
 		Game.print("you oppened the notebook");
 		if(opened == false) {
 			read();
@@ -19,8 +19,9 @@ public class notebook extends Item{
 	@Override
 	public void read() {
 		Game.print("you got a code");
-		Item code = new Item("code", true);
-		Game.addItem(code);
+		Item code = new Item("Code", true);
+		Game.getLocation().addItem(code);
+		Game.takeItem("Code");
 		opened = true;
 	}
 }

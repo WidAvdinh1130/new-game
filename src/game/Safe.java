@@ -11,7 +11,7 @@ public class Safe extends Item {
 	}
 
 	@Override
-	public void open() {
+	public void openSafe() {
 		if (openState == false) {
 			Game.print("you opened the safe");
 			openState = true;
@@ -30,7 +30,7 @@ public class Safe extends Item {
 	}
 
 	@Override
-	public void close() {
+	public void closeSafe() {
 		if(openState == true) {
 			openState = false;
 			Game.print("you closed the safe");
