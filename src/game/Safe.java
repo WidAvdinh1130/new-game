@@ -1,0 +1,39 @@
+package game;
+
+public class Safe extends Item {
+	private boolean taken;
+	private boolean openState;
+
+	public Safe(String n, Boolean c) {
+		super(n, c);
+		taken = false;
+		openState = false;
+	}
+
+	@Override
+	public void openSafe() {
+		if (openState == false) {
+			Game.print("you opened the safe");
+			openState = true;
+			if(Game.getInventory().indexOf("Notebook") == -1) {
+				Item Notebook = new notebook("Notebook", true);
+				Game.getLocation().addItem(Notebook);
+				Game.print("inside the safe there is a notebook");
+			}
+			else {
+				Game.print("There is nothing inside");
+			}
+		}
+		else {
+			Game.print("you can't open what's already opened");
+		}
+	}
+
+	@Override
+	public void closeSafe() {
+		if(openState == true) {
+			openState = false;
+			Game.print("you closed the safe");
+		}
+	}
+}
