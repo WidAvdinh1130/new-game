@@ -144,6 +144,7 @@ public class Game {
 					print("talking to ghosts?");
 					}
 				}
+			else if (command)
 			
 			//load game
 			else if (command.equals("load")) {
@@ -252,6 +253,9 @@ public class Game {
 
 	public static ArrayList<Item> getInventory() {
 		return inventory;
+	}
+	public static void rmItem(Item i) {
+		inventory.remove(i);
 	}
 
 	public static void addItem(Item i) {

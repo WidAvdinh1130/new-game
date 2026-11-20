@@ -1,5 +1,7 @@
 package game;
 
+import java.util.Iterator;
+
 public class pootis extends NPC {
 	private int pootisConvoNum = 0;
 
@@ -33,6 +35,18 @@ public class pootis extends NPC {
 		case 33:
 			finalTalk();
 			break;
+		}
+	}
+	@Override
+	public void give(Item i) {
+		if(i.getName().equals("Four Hundred Thousand Dollars")) {
+			say("Thank you here is safe combination");
+			Item combo = new Item("combination", true);
+			Game.addItem(combo);
+			Game.rmItem(i);
+		}
+		else {
+			say("I don't want your garbage");
 		}
 	}
 

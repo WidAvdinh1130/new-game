@@ -24,6 +24,11 @@ public class NPC {
 	public void talk() {
 		Game.print("You can't talk to Bobo");
 	}
+	
+	public void give(Item i) {
+		Game.print("they don't want your stuff");
+	}
+	
 	public int getResponse(String[] responses) {
 		for (String option : responses) {
 			Game.print(option);
@@ -40,5 +45,6 @@ public class NPC {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
 }

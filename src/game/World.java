@@ -22,6 +22,7 @@ public class World {
 		Item safe = new Safe("Safe", false);
 		Item couch = new Item("Couch", false);
 		Item coffee_table = new Item("Coffee Table", false);
+		Item money = new Item("Four Hundred Thousand Dollars", true);
 
 		NPC pootisbird = new pootis();
 		
@@ -31,6 +32,7 @@ public class World {
 		kitchen.addItem(mysterious_orb);
 		bedroom.addItem(office_key);
 		office.addItem(tools);
+		office.addItem(money);
 		attic.addItem(safe);
 		livingRoom.addItem(couch);
 		livingRoom.addItem(coffee_table);
